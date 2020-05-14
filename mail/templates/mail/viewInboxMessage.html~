@@ -1,0 +1,87 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/viewMessage.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+
+	<div>
+		<div> To </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ recepients }}	</p>
+	</div>
+
+	<div>
+		<div> From </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.sender.username }}	</p>
+	</div>
+
+	<div>
+		<div> On </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.dateTime }}	</p>
+	</div>
+
+	<div>
+		<div> Subject </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.subject }}	</p>
+	</div>
+
+	<div id = "message">
+		{{ message.body }}
+	</div>
+
+	{% if message.attachment.url != None %}
+	<a href = "{{ message.attachment.url }}" id = "anchor" target = "new">
+		<img src="{{ message.attachment.url }}">
+	</a>
+	
+	<a href = "#" id = "download" address = "{{ message.attachment.path }}"> 
+		Download&nbsp <i class="fa fa-download" aria-hidden="true"></i>	
+	</a>
+	{% endif %}
+
+	<a href = "{% url 'reply' message.sender.userID %}" id = "reply"> Reply </a>
+	<a href = "{% url 'forward' message.messageID %}" id = "forward" method = "POST"> Forward </a>
+	<a href = "#" id = "delete"> Delete </a>
+</div>
+
+<ul id = "sideList">
+	{% for item in allReceived %}
+	<li>
+		<a href = "#" messageID = "{{ item.messageID }}"> <i class="fa fa-long-arrow-right" aria-hidden="true"></i>&nbsp {{ item.dateTime }}	</a>
+	</li>
+	{% endfor %}
+</ul>
+
+<style type="text/css">
+	#inbox
+	{
+		font-style: italic;
+		background-color: rgba(30, 80, 40, 0.9);
+		color: white !important;
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src = "{% static 'mail/js/viewMessage.js' %}"></script>
+<script type="text/javascript" src = "{% static 'mail/js/viewInboxMessage.js' %}"></script>
+<script type="text/javascript">
+	var obj1 = {
+		'download' : 'download',
+	};
+	x.init(obj1);
+
+	var obj2 = {
+		'list' : 'sideList',
+		'reply' : 'reply',
+		'forward' : 'forward',
+		'del' : 'delete',
+		'download' : 'download',
+		'anchor' : 'anchor',
+	};
+	y.init(obj2);
+</script>
+{% endblock %}

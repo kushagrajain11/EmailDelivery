@@ -1,0 +1,39 @@
+*{
+	font-family: arial;
+	box-sizing: border-box;
+}
+
+#list{
+	position: fixed;
+	top: 100px;
+	left: 0;
+
+	width: 130px;
+	height: 460px;
+	display: flex;
+	flex-direction: column;
+	ackground-color: green;
+}
+
+#list > li{
+	width: 100%;
+	height: 35px;
+	margin-bottom: 50px;
+}
+
+#list > li > a{
+	display: block;
+	padding: 5px 15px;
+	height: 100%;
+	color: black;
+	font-size: 17px;
+	border-bottom: 1px solid black;
+	ackground-color: red;
+	transition: 0.3s;
+}
+
+#list > li > a:hover{
+	font-style: italic;
+	background-color: rgba(30, 0, 100, 0.5);
+	color: white;
+}

@@ -1,0 +1,32 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/logged_in.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Drafts </header>
+
+	<ul id = "messageList">
+		{% for item in drafts %}
+		<li>
+			<a href="{% url 'viewDraft' item.messageID %}" style = "text-decoration:none;"> 
+				<div id = "on">		<b> Date	</b> : {{ item.dateTime }} 	</div>
+				<div id = "from"> 	<b> Subject </b> : {{ item.subject }} 	</div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<style type="text/css">
+	#drafts
+	{
+		font-style: italic;
+		background-color: rgba(30, 80, 40, 0.9);
+		color: white !important;
+	}
+</style>
+{% endblock %}

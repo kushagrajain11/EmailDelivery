@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="{% static 'common/css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'common/css/font-awesome/css/font-awesome.min.css' %}">
+{% block extra_css %}	{% endblock %}
+
+<head>
+	{% block head %}	{% endblock %}
+</head>
+
+<title>
+	{% block title %}	{% endblock %}
+</title>
+
+<body>
+
+	{% block body %}	{% endblock %}
+	{% block scripts %}	{% endblock %}
+	<script type="text/javascript" src = "{% static 'common/js/jquery.js' %}"></script>
+</body>
+
+</html>

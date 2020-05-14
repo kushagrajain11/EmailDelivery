@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+<html>
+
+<link rel="stylesheet" href="{% static 'common/css/font-awesome/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'common/css/navigation.css' %}">
+{% block extra_css %}	{% endblock %}
+
+<head>
+	{% block head %}	{% endblock %}
+</head>
+
+<title>
+	{% block title %}	{% endblock %}
+</title>
+
+
+<body>
+	<ul id = "list"> 
+		<li>	
+			<a href="{% url 'sendMail' %}" id = "compose"> 			
+				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp Compose 	
+			</a>
+		</li>
+
+		<li>	
+			<a href="{% url 'home' user.userID %}" id = "inbox"> 
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp Inbox 	
+			</a>
+		</li>
+
+		<li>	
+			<a href="{% url 'sentMail' %}" id = "sentMail">		
+				<i class="fa fa-share" aria-hidden="true"></i>&nbsp Sent Mail 	
+			</a>	
+		</li>
+
+		<li>	
+			<a href="{% url 'drafts' %}" id = "drafts"> 		
+				<i class="fa fa-archive" aria-hidden="true"></i>&nbsp Drafts 	
+			</a>	
+		</li>
+
+		<li>
+			<a href = "{% url 'profile' %}" title = "View Your Profile" id = "profile">
+				<i class="fa fa-user" aria-hidden="true"></i>&nbsp {{ user.username }}	
+			</a>
+		</li>
+
+		<li>
+			<a href="{% url 'logout' %}"> 	
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp Logout 
+			</a>
+		</li>
+	</ul>
+
+	{% block body %}	{% endblock %}
+	{% block scripts %}	{% endblock %}
+	<script type="text/javascript" src = "{% static 'common/js/jquery.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+from django.db import models
+
+
+class Message(models.Model):
+	messageID 	= models.AutoField(primary_key = True)
+	subject 	= models.CharField(max_length = 30)
+	body 		= models.CharField(max_length = 500)
+	dateTime 	= models.DateTimeField(auto_now_add = True)
+	sender 		= models.ForeignKey('account.MyUser')
+	isDraft 	= models.BooleanField(default = False)
+	attachment  = models.ImageField(upload_to = 'images', default = None)
+

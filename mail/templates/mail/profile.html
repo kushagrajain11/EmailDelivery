@@ -1,0 +1,76 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Account details :- </header>
+	<div id = "inner">
+		<div>
+			<div> Username </div>	
+			<p> :&nbsp&nbsp&nbsp {{ user.username }}</p>
+		</div>
+
+		<div>
+			<div> Email ID </div>	
+			<p> :&nbsp&nbsp&nbsp {{ user.email }}</p>
+		</div>
+
+		<div>
+			<div> Date of Birth </div>	
+			<p> :&nbsp&nbsp&nbsp {{ user.dob.dob }}</p>
+		</div>
+
+		<div>
+			<div> Age </div>	
+			<p> :&nbsp&nbsp&nbsp {{ user.dob.age }}</p>
+		</div>
+
+
+		<div>
+			<div> Joined Since </div>	
+			<p> :&nbsp&nbsp&nbsp {{ user.date_joined }}</p>
+		</div>
+
+		<div>
+			<div> Total Emails Sent </div>	
+			<p> :&nbsp&nbsp&nbsp {{ sentMailsCount }}</p>
+		</div>
+
+		<div>
+			<div> Total Emails Received </div>	
+			<p> :&nbsp&nbsp&nbsp {{ receivedMailsCount }}</p>
+		</div>
+
+		<div>
+			<div> Drafts Stored </div>	
+			<p> :&nbsp&nbsp&nbsp {{ draftsCount }}</p>
+		</div>
+
+		<div>
+			<div> Last Email Sent On </div>	
+			<p> :&nbsp&nbsp&nbsp {{ lastSentDate }}</p>
+		</div>
+
+		<div>
+			<div> Last Email Received On </div>	
+			<p> :&nbsp&nbsp&nbsp {{ lastReceivedDate }}</p>
+		</div>
+
+		<a id = "edit" href = "#"> Edit Profile </a>
+	</div>
+</div>
+
+<style type="text/css">
+	#profile
+	{
+		font-style: italic !important;
+		background-color: rgba(30, 80, 40, 0.9) !important;
+		color: white !important;
+	}
+</style>
+
+{% endblock %}

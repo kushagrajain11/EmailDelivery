@@ -1,0 +1,37 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/logged_in.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Sent Mail </header>
+
+
+	<ul id = "messageList">
+		{% for item in list %}
+		<li>
+			<a href="{% url 'viewOutboxMessage' item.message.messageID %}" style = "text-decoration:none;"> 
+				<div id = "on">		<b> On	</b> : {{ item.message.dateTime }} 	</div>
+				<div id = "from"> 	<b> To 	</b> : 	
+					{% for r in item.recepients %} 
+					{{ r.username }} &nbsp&nbsp
+					{% endfor %}
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<style type="text/css">
+	#sentMail
+	{
+		font-style: italic !important;
+		background-color: rgba(30, 80, 40, 0.9) !important;
+		color: white !important;
+	}
+</style>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'common/base_NotLoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'common/css/success.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<div id = "message">	{{ message }}	</div>
+	<a href="{% url 'login' %}" id = "home"> Back To Home 	</a>
+</div>
+
+<style type="text/css">
+	body{
+		background-image: url("/static/common/14.jpg");
+		background-size: 100vw 100vh;
+	}
+</style>
+{% endblock %}

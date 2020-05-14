@@ -1,0 +1,32 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/css/logged_in.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Inbox </header>
+
+	<ul id = "messageList">
+		{% for item in r %}
+		<li>
+			<a href="{% url 'viewInboxMessage' item.messageID %}" style = "text-decoration:none;"> 
+				<div id = "on">		<b> On		</b> : {{ item.dateTime }} 	</div> 
+				<div id = "from"> 	<b> From 	</b> : {{ item.sender }}	</div>	
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<style type="text/css">
+	#inbox
+	{
+		font-style: italic;
+		background-color: rgba(30, 80, 40, 0.9);
+		color: white !important;
+	}
+</style>
+{% endblock %}

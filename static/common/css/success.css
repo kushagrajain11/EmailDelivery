@@ -1,0 +1,42 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: arial;
+}
+
+#mainContainer{
+	width: 400px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+#message{
+	font-size: 18px;
+	width: 400px;
+	line-height: 30px;
+	padding: 30px;
+	background-color: white;
+	border: 1px solid black;
+	border-bottom: none;
+	border-radius: 7px 7px 0 0;
+}
+
+#home{
+	font-size: 16px;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	width: 400px;
+	padding: 10px;
+	color: white;
+	border-radius: 0 0 7px 7px;
+	background-color: rgba(0, 0, 150, 0.7);
+	transition: 0.6s;
+}
+
+#home:hover{
+	font-style: italic;
+	background-color: rgba(100, 0, 100, 1);
+	border-radius: 0;
+}

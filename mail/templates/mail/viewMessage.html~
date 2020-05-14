@@ -1,0 +1,64 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/viewMessage.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div id = "mainContainer">
+	{% if message.isDraft != True %}
+	<div>
+		<div> To </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ recepients }}	</p>
+	</div>
+
+	<div>
+		<div> From </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.sender.username }}	</p>
+	</div>
+	{% endif %}
+
+
+	<div>
+		<div> On </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.dateTime }}	</p>
+	</div>
+
+	<div>
+		<div> Subject </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.subject }}	</p>
+	</div>
+
+	<div id = "message">
+		{{ message.body }}
+	</div>
+
+	{% if message.attachment.url != None %}
+	<a href = "{{ message.attachment.url }}">
+		<img src="{{ message.attachment.url }}">
+	</a>
+	
+	<a href = "#" id = "download" address = "{{ message.attachment.path }}"> 
+		Download&nbsp <i class="fa fa-download" aria-hidden="true"></i>	
+	</a>
+	{% endif %}
+
+	{% if outbox == None and message.isDraft != True %}
+	<a href = "{% url 'reply' message.sender.userID %}" id = "reply"> Reply </a>
+	{% endif %}
+	<a href = "{% url 'forward' message.messageID %}" id = "forward" method="POST"> Frward </a>
+	<a href = "{{ deleteLink }}" id = "delete"> Delete </a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src = "{% static 'mail/js/viewMessage.js' %}"></script>
+<script type="text/javascript">
+	var obj = {
+		'download' : 'download',
+	};
+	x.init(obj);
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'common/base_NotLoggedIn.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Login </header>
+	<div id = "inner">
+		<form action = "{% url 'login' %}" method = "POST">
+			{% csrf_token %}
+			{{ f.as_p }}
+			<input type = "Submit" value = "Login">	
+		</form>
+
+		<a  href="{% url 'forgotPassword' %}"> 	Forgot Password </a>
+		<a  href="{% url 'signup' %}"> 			Sign Up 			</a>
+	</div>
+</div>
+
+<style type="text/css">
+	#mainContainer
+	{
+		margin-top: 140px;
+	}
+</style>
+{% endblock %}

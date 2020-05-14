@@ -1,0 +1,53 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'common/css/forms.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/sendMail.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> {{ heading }} </header>
+	<div id = "inner">
+		<form action = "{% url 'sendMail' %}" method = "POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ f.as_p }}
+			{{ m.attachment }}
+			<input type = "submit" value = "Send">
+		</form>
+		<a id = "draft"> Save as Draft </a>
+		<div id = "resultBox"></div>
+	</div>
+	<section> 
+		Enter the username of the recepient in the "To" field. To send your message to more than one person, enter the usernames seperated by a comma and a space. For example :- "kushagra, kj".
+	</section>
+</div>
+
+<style type="text/css">
+	#compose{
+		font-style: italic !important;
+		background-color: rgba(30, 80, 40, 0.9) !important; 
+		color: white !important;
+	}
+
+	body{
+		background-image : url('/static/common/images/LoggedIn_Background.jpg') !important;
+		background-size: auto !important;
+	}
+
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src = "{% static 'mail/js/sendMail.js' %}"></script>
+<script type="text/javascript">
+	document.getElementById("id_attachment").setAttribute('value', '{{ m.attachment }}')
+	var obj = {
+		'draft' : 'draft',
+		'userID' : {{ user.userID }},
+		'replyMessage' : 'resultBox',
+	};
+	x.init(obj);
+</script>
+{% endblock %}
